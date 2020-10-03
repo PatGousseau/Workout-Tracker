@@ -1,11 +1,14 @@
-# My Personal Project
+# Workout and Diet Monitor
 
-## A subtitle
+## A personal health coach 
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+My workouts and diet are of great importance to me. This application will allow me to optimize these two aspects of my life by using user input
+ to accurately track the user's progress in both categories. Anyone who wants to get the most out of their workouts and diet 
+ would be a perfect candidate for this application.
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+
+**Program features:**
+- User input
+- Relevant graphs and statistics related to your own workout progress
+- Graphs and key statistics related to your diet
+- Provides the number of days in a row in which you have completed workouts and  achieved diet and supplement intake goals.
