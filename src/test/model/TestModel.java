@@ -87,6 +87,7 @@ public class TestModel {
                 assertEquals(oldData.get(i).getWeight().get(j), weightShouldBe.get(j));
             }
         }
+        assertEquals(3, curls.getNumSets());
     }
 
     @Test
