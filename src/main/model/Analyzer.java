@@ -50,7 +50,7 @@ public class Analyzer {
 
         ArrayList<Exercise> pastExercises  = new ArrayList<Exercise>();
         JSONParser parser = new JSONParser();
-        JSONObject jsonObject  = (JSONObject) parser.parse(new FileReader("data.json"));
+        JSONObject jsonObject  = (JSONObject) parser.parse(new FileReader("data\\data.json"));
         JSONArray allExercise = (JSONArray) jsonObject.get("exercise");
 
         for (int i = 0; i < allExercise.size(); i++) {
