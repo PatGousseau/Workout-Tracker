@@ -1,5 +1,8 @@
-package model;
+package test;
 
+import model.Analyzer;
+import model.Exercise;
+import model.Routine;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,21 +39,6 @@ public class TestModel {
         analyze = new Analyzer();
     }
 
-    @Test
-    void testAddExercise() {
-        routine.addExercise(curls);
-        routine.addExercise(squat);
-        assertEquals(2, routine.getAllExercises().size());
-        assertEquals(curls, routine.getExercise(0));
-        assertEquals(squat, routine.getExercise(1));
-    }
-
-
-
-    @Test
-    void testGetVol() {
-        assertEquals(1260, curls.getVol());
-    }
 
     @Test
     void testCompareData() throws IOException, ParseException {
@@ -87,18 +75,10 @@ public class TestModel {
                 assertEquals(oldData.get(i).getWeight().get(j), weightShouldBe.get(j));
             }
         }
-        assertEquals(3, curls.getNumSets());
+
     }
 
-    @Test
-    void testRemoveExercise() {
-        routine.addExercise(curls);
-        routine.addExercise(benchPress);
-        routine.addExercise(squat);
-        routine.removeExercise("curls");
-        assertEquals(routine.getExercise(0),benchPress);
-        assertEquals(routine.getExercise(1),squat);
-    }
+
 
     @Test
     void testGetHistoricalDataExceptions() {
@@ -114,9 +94,5 @@ public class TestModel {
         catch (IOException e) { fail(); }
     }
 
-    @Test
-    void testRoutineGetName() {
 
-        assertEquals("testRoutine",routine.getName());
-    }
 }
