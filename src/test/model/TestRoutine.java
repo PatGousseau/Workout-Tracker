@@ -1,5 +1,4 @@
-package test;
-
+package model;
 
 import model.Analyzer;
 import model.Exercise;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class TestExercise {
+public class TestRoutine {
 
     ArrayList<Long> reps = new ArrayList<Long>();
     ArrayList<Long> weight = new ArrayList<Long>();
@@ -41,7 +40,27 @@ public class TestExercise {
     }
 
     @Test
-    void testGetVol() {
-        assertEquals(1260, curls.getVol());
+    void testAddExercise() {
+        routine.addExercise(curls);
+        routine.addExercise(squat);
+        assertEquals(2, routine.getAllExercises().size());
+        assertEquals(curls, routine.getExercise(0));
+        assertEquals(squat, routine.getExercise(1));
+    }
+
+    @Test
+    void testRemoveExercise() {
+        routine.addExercise(curls);
+        routine.addExercise(benchPress);
+        routine.addExercise(squat);
+        routine.removeExercise("curls");
+        assertEquals(routine.getExercise(0),benchPress);
+        assertEquals(routine.getExercise(1),squat);
+    }
+
+    @Test
+    void testRoutineGetName() {
+
+        assertEquals("testRoutine",routine.getName());
     }
 }
