@@ -1,16 +1,9 @@
 package model;
 
-
-import model.Analyzer;
-import model.Exercise;
-import model.Routine;
-import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class TestExercise {
 

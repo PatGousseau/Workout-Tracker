@@ -1,8 +1,5 @@
 package model;
 
-import model.Analyzer;
-import model.Exercise;
-import model.Routine;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class TestModel {
+public class TestAnalyzer {
 
     ArrayList<Long> reps = new ArrayList<Long>();
     ArrayList<Long> weight = new ArrayList<Long>();

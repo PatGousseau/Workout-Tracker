@@ -16,7 +16,6 @@ public class UserData {
     private Scanner userInput = new Scanner(System.in);  // Create a Scanner object
     private boolean  gettingUserInput = true; // Is the user done entering input
 
-    //MODIFIES:
     //EFFECTS: Creates a Routine using the name given by user
     private Routine createRoutine() {
         System.out.println("Enter the name of your routine:");
