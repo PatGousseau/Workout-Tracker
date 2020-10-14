@@ -1,0 +1,62 @@
+{
+  "exercise": [
+    {
+    "name": "curls",
+    "data": [
+        {
+          "Date": "10/10/2020",
+          "numSets": 3,
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ]
+        }
+
+      ]
+    },
+    {
+    "name": "bench press",
+    "data": [
+        {
+          "Date": "10/10/2020",
+          "numSets": 3,
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "name": "squat",
+      "data": [
+        {
+          "Date": "10/10/2020",
+          "numSets": 3,
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ]
+        }
+      ]
+    }
+    ]
+}
