@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /*
-This class represents an exercise
+This class represents an exercise which has a number of sets, reps, weight and a name
  */
 
 public class Exercise {

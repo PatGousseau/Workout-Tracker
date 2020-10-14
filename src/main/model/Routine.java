@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /*
-This class represents a workout routine, comprised of Exercises
+This class represents a workout routine, comprised of Exercises and a name
  */
 
 public class Routine {
