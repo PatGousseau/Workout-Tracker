@@ -90,6 +90,16 @@ public class TestModel {
     }
 
     @Test
+    void testRemoveExercise() {
+        routine.addExercise(curls);
+        routine.addExercise(benchPress);
+        routine.addExercise(squat);
+        routine.removeExercise("curls");
+        assertEquals(routine.getExercise(0),benchPress);
+        assertEquals(routine.getExercise(1),squat);
+    }
+
+    @Test
     void testGetHistoricalDataExceptions() {
 
         try { analyze.getHistoricalData();}
