@@ -8,10 +8,6 @@ This class represents a workout routine, comprised of Exercises and a name
 
 public class Routine {
 
-    public ArrayList<Exercise> getAllExercises() {
-        return allExercises;
-    }
-
     private ArrayList<Exercise> allExercises; // The list of all exercises in the routine
     private String name; // The name of the routine
 
@@ -24,13 +20,17 @@ public class Routine {
     // Add an Exercise
     //REQUIRES: exercise can not be null
     //MODIFIES: this
-    //EFFECTS: Adds an exercise to the routine
+    //EFFECTS: Adds an exercise to the end of the routine
     public void addExercise(Exercise exercise) {
         allExercises.add(exercise);
     }
 
     public int getSize() {
         return allExercises.size();
+    }
+
+    public ArrayList<Exercise> getAllExercises() {
+        return allExercises;
     }
 
     public Exercise getExercise(int index) {

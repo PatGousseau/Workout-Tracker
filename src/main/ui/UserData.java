@@ -54,7 +54,6 @@ public class UserData {
         }
     }
 
-
     //REQUIRES: numSets needs to be a positive integer, user must input
     //          positive integers
     //EFFECTS: Returns an Arraylist of the user's reps and an ArrayList of the

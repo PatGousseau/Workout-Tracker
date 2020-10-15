@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /*
-This class represents an exercise which has a number of sets, reps, weight and a name
+This class represents an exercise which has a number of sets, lists of reps and weight and a name
  */
 
 public class Exercise {
@@ -37,6 +37,7 @@ public class Exercise {
         return this.weight;
     }
 
+    //REQUIRES: the fields reps and weight can not be null
     //EFFECTS: Returns the workout volume for this
     public double getVol() {
         double vol = 0;

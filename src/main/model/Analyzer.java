@@ -62,6 +62,7 @@ public class Analyzer {
         return pastExercises;
     }
 
+    //REQUIRES: routine can not be null
     //EFFECTS: For each exercise just completed, it returns the percentage of improvement
     //         from the last time the user performed each exercise
     public Hashtable compareData(Routine routine) throws ParseException, IOException {
@@ -79,7 +80,6 @@ public class Analyzer {
                 }
             }
         }
-
         return improvement;
     }
 }
