@@ -23,9 +23,9 @@ public class Analyzer {
     //REQUIRES: routine can not be null
     //EFFECTS: For each exercise just completed, it returns the percentage of improvement
     //         from the last time the user performed each exercise
-    public Hashtable compareData(Routine routine) throws IOException {
+    public Hashtable compareData(Routine routine, String fileName) throws IOException {
 
-        JsonReader reader = new JsonReader("data/data.json");
+        JsonReader reader = new JsonReader(fileName);
         Hashtable improvement = new Hashtable();
         Set<String> keys = reader.getKeys();
         for (int i = 0; i < routine.getSize(); i++) {

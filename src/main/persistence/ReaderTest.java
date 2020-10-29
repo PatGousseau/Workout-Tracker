@@ -53,15 +53,6 @@ public class ReaderTest {
         } catch (IOException e) {
             fail();
         }
-
-
-//        try {
-//            JSONArray data = reader.read("curls");
-//            JSONObject obj = (JSONObject)data.get(0);
-//            assertEquals(3,obj.get("numSets"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
 }

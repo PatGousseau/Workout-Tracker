@@ -2,6 +2,7 @@ package persistence;
 
 import model.Analyzer;
 import model.Exercise;
+import model.InvalidInputException;
 import model.Routine;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,6 +64,15 @@ public class WriterTest {
             assertEquals(3,newExercise.getNumSets());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testException() throws InvalidInputException {
+        try {
+            throw new InvalidInputException();
+        } catch (InvalidInputException e) {
+            //expected
         }
     }
 
