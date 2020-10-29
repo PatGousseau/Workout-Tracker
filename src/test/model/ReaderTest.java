@@ -1,10 +1,12 @@
-package persistence;
+package model;
 
 import model.Exercise;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
