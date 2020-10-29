@@ -2,8 +2,11 @@ package ui;
 
 import model.Analyzer;
 import model.Exercise;
+import model.InvalidInputException;
 import model.Routine;
-import org.json.simple.parser.ParseException;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -15,19 +18,22 @@ public class UserData {
 
     private Scanner userInput = new Scanner(System.in);  // Create a Scanner object
     private boolean  gettingUserInput = true; // Is the user done entering input
+    private Routine routine;
+    private JsonReader reader = new JsonReader("data/data.json");
+    JsonWriter writer = new JsonWriter("data/data.json");
 
     //EFFECTS: Creates a Routine using the name given by user
     private Routine createRoutine() {
         System.out.println("Enter the name of your routine:");
         String routineName = userInput.nextLine();
-        Routine routine = new Routine(routineName);
+        routine = new Routine(routineName);
         return routine;
     }
 
-    //REQUIRES: User must input either 'a', 'r' or 'd'
+
     //MODIFIES: this
     //EFFECTS: Asks user if they are done adding exercises. If so, it modifies gettingUserInput to
-    //         false, otherwise it does nothing.
+    //false, otherwise it does nothing. If the user enters an invalid character, it prompts the user again
     private void isUserDone(Routine routine) {
 
         boolean invalidInput = true; // Has the user provided valid input
@@ -38,11 +44,11 @@ public class UserData {
             String decision = userInput.nextLine();
             if (decision.equals("a")) {
                 invalidInput = false;
-                System.out.println("Great effort today!");
+                System.out.println("Keep working hard!");
             } else if (decision.equals("d")) {
                 gettingUserInput = false;
                 invalidInput = false;
-                System.out.println("Keep working hard!");
+                System.out.println("Good work today!");
             } else if (decision.equals("r")) {
                 System.out.println("Enter the name of the exercise you wish to remove");
                 String removeName = userInput.nextLine();
@@ -83,39 +89,99 @@ public class UserData {
         while (gettingUserInput) {
 
             System.out.println("Enter the name of the exercise or choose from the following:");
-            System.out.println(" c: curls \n b: bench press \n s: squat");
-            String exerciseName = userInput.nextLine();
-            switch (exerciseName) {
-                case "c":
-                    exerciseName = "curls";
-                    break;
-                case "b":
-                    exerciseName = "bench press";
-                    break;
-                case "s":
-                    exerciseName = "squat";
-                    break;
-            }
+            String exerciseName = displayPastExercises();
 
             System.out.println("Enter the number of sets");
             int numSets = Integer.parseInt(userInput.nextLine());
             List<Object> userInput = getSetsAndWeight(numSets);
             ArrayList<Long> weight = (ArrayList<Long>) userInput.get(1);
-            routine.addExercise(new Exercise(exerciseName, numSets, (ArrayList<Long>) userInput.get(0), weight));
+            routine.addExercise(new Exercise(exerciseName,numSets, (ArrayList<Long>) userInput.get(0), weight));
             System.out.println("Successfully added " + exerciseName + " to your " + routine.getName() + " routine!");
             isUserDone(routine);
         }
     }
 
-    //REQUIRES: User must input either 'i' or 'q'
+    //EFFECTS: displays all past exercises and prompts the user to choose one of the
+    // exercises or add a new exercise
+    private String displayPastExercises() {
+
+        String name = new String();
+        Hashtable allExercises = new Hashtable();
+        try {
+            Set<String> keys = reader.getKeys();
+            int index = 1;
+            for (String key: keys) {
+                System.out.println(index + ": " + key);
+                allExercises.put(index, key);
+                index++;
+            }
+            String exercise = userInput.nextLine();
+            try {
+                Integer.parseInt(exercise);
+                name = (String) allExercises.get(Integer.parseInt(exercise));
+            } catch (NumberFormatException e) {
+                name = exercise;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public void saveData() {
+        try {
+            System.out.println(routine.getExercise(0).getNumSets());
+            writer.write(routine);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     //MODIFIES: this
-    //EFFECTS:  Gets the routine and exercises from the user and compares that data to
-    //          the last time they performed these exercises
+    //EFFECTS:  Gets the routine and exercises from the user
+    // and compares that data to the last time they performed these exercises
     public void getData() {
+
         Routine routine = createRoutine(); // Create routine
         addExerciseToRoutine(routine); // Add exercises to the routine
+        boolean userSavesData = true;
+
+        userSavesData = true;
+        while (userSavesData) {
+            try {
+                promptViewStats();
+                userSavesData = false;
+            } catch (InvalidInputException e) {
+                userSavesData = true;
+            }
+        }
+        userSavesData = true;
+        while (userSavesData) {
+            try {
+                promptSaveData();
+                userSavesData = false;
+            } catch (InvalidInputException e) {
+                userSavesData = true;
+            }
+        }
+    }
+
+    private void promptSaveData() throws InvalidInputException {
+        System.out.println("Would you like to save your data? \n y: yes \n n: no");
+        String input = userInput.nextLine();
+        if (input.equals("y")) {
+            saveData();
+        } else if (!input.equals("n")) {
+            throw new InvalidInputException();
+        }
+    }
+
+    private void promptViewStats() throws InvalidInputException {
         System.out.println("Choose one of the following: \n v: view percent improvement \n q: quit");
-        if (userInput.nextLine().equals("v")) {
+        String answer = userInput.nextLine();
+        if (answer.equals("v")) {
             Analyzer analyze = new Analyzer();
             try {
                 Hashtable comparedData = analyze.compareData(routine);
@@ -123,11 +189,13 @@ public class UserData {
                 for (String key: keys) {
                     System.out.println(key + " : " + comparedData.get(key) + "%");
                 }
-            } catch (ParseException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (answer.equals("q")) {
+            System.out.println("See you next time!");
+        } else {
+            throw new InvalidInputException();
         }
     }
 }

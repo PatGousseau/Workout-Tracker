@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /*
@@ -42,8 +45,27 @@ public class Exercise {
     public double getVol() {
         double vol = 0;
         for (int i = 0; i < reps.size(); i++) {
-            vol += (reps.get(i) * weight.get(i));
+
+            vol += (double)(Integer.parseInt(String.valueOf(reps.get(i))) * Integer.parseInt(String.valueOf(weight.get(i))));
         }
         return vol;
     }
+
+//    public JSONObject toJson() {
+//        JSONObject json = new JSONObject();
+//        json.put("name", name);
+//        json.put("thingies", thingiesToJson());
+//        return json;
+//    }
+
+//    // EFFECTS: returns things in this workroom as a JSON array
+//    private JSONArray thingiesToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//
+//        for (Thingy t : thingies) {
+//            jsonArray.put(t.toJson());
+//        }
+//
+//        return jsonArray;
+//    }
 }

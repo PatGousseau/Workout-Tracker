@@ -20,5 +20,7 @@ My workouts are of great importance to me. After using multiple tracking apps ov
 - As a user, I want to be able to remove an exercise from a workout plan 
 - As a user, I want to be able to add completed sets and reps with the weight used to an exercise
 - As a user, I want to be able to view statistics related to my progress
+- As a user, I want to be able to save the exercises I have completed
+- As a user, I want to be able to choose from past exercises completed
 
 
