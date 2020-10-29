@@ -50,22 +50,4 @@ public class Exercise {
         }
         return vol;
     }
-
-//    public JSONObject toJson() {
-//        JSONObject json = new JSONObject();
-//        json.put("name", name);
-//        json.put("thingies", thingiesToJson());
-//        return json;
-//    }
-
-//    // EFFECTS: returns things in this workroom as a JSON array
-//    private JSONArray thingiesToJson() {
-//        JSONArray jsonArray = new JSONArray();
-//
-//        for (Thingy t : thingies) {
-//            jsonArray.put(t.toJson());
-//        }
-//
-//        return jsonArray;
-//    }
 }
