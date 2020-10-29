@@ -45,8 +45,9 @@ public class Exercise {
     public double getVol() {
         double vol = 0;
         for (int i = 0; i < reps.size(); i++) {
-
-            vol += (double)(Integer.parseInt(String.valueOf(reps.get(i))) * Integer.parseInt(String.valueOf(weight.get(i))));
+            int rep = (Integer.parseInt(String.valueOf(reps.get(i))));
+            int weights = Integer.parseInt(String.valueOf(weight.get(i)));
+            vol += (double) rep + weights;
         }
         return vol;
     }
