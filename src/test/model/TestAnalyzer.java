@@ -40,6 +40,9 @@ public class TestAnalyzer {
 
         Hashtable newDatum = analyze.compareData(routine,"data/data_reader_test.json");
         assertEquals(String.valueOf(14.29), newDatum.get("squat"));
+        Routine secondRoutine = new Routine("secondRoutine");
+        secondRoutine.addExercise(new Exercise("pulldowns",1,reps,weight));
+        analyze.compareData(routine,"data/data_reader_test.json");
 
     }
 
