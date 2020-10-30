@@ -1,19 +1,16 @@
 package persistence;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import model.Exercise;
 import model.Routine;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Set;
 
 // Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
-    private static final int TAB = 4;
+
     private PrintWriter writer;
     private String destination;
 
@@ -22,6 +19,8 @@ public class JsonWriter {
         this.destination = destination;
     }
 
+    //MODIFIES: this
+    //EFFECTS: writes the routine into the database
     public void write(Routine routine) throws IOException {
 
         JsonReader read = new JsonReader(destination);
@@ -57,6 +56,8 @@ public class JsonWriter {
 
     }
 
+    //REQUIRES: parameters must not be null
+    //EFFECTS: adds a new exercise to the database
     private void addNewExercise(JSONObject jsonObject, JSONObject newEntry, Exercise exercise) {
         JSONObject allExercises = (JSONObject) jsonObject.get("exercise");
         JSONObject jsonExercise = new JSONObject();
@@ -66,68 +67,11 @@ public class JsonWriter {
         allExercises.put(exercise.getName(), jsonExercise);
     }
 
+    //REQUIRES: parameters must not be null
+    //EFFECTS: adds an entry to an already existing exercise in the database
     private void addToEntries(JSONObject jsonObject, JSONObject newEntry, Exercise exercise) {
         JSONObject allExercises = (JSONObject) jsonObject.get("exercise");
         JSONObject pastExercise = (JSONObject) allExercises.get(exercise.getName());
         pastExercise.append("entries", newEntry);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    // EFFECTS: constructs writer to write to destination file
-//    public JsonWriter(String destination) {
-//        this.destination = destination;
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
-//    // be opened for writing
-//    public void open() throws FileNotFoundException {
-//        writer = new PrintWriter(new File(destination));
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: writes JSON representation of workroom to file
-//    public void write(WorkRoom wr) {
-//        JSONObject json = wr.toJson();
-//        saveToFile(json.toString(TAB));
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: closes writer
-//    public void close() {
-//        writer.close();
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: writes string to file
-//    private void saveToFile(String json) {
-//        writer.print(json);
-//    }
 }

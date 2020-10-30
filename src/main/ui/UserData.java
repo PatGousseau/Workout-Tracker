@@ -6,7 +6,6 @@ import model.InvalidInputException;
 import model.Routine;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class UserData {
     private boolean  gettingUserInput = true; // Is the user done entering input
     private Routine routine;
     private JsonReader reader = new JsonReader("data/data.json");
-    JsonWriter writer = new JsonWriter("data/data.json");
+    private JsonWriter writer = new JsonWriter("data/data.json");
 
     //EFFECTS: Creates a Routine using the name given by user
     private Routine createRoutine() {
@@ -61,9 +60,9 @@ public class UserData {
     }
 
     //REQUIRES: numSets needs to be a positive integer, user must input
-    //          positive integers
+    //positive integers
     //EFFECTS: Returns an Arraylist of the user's reps and an ArrayList of the
-    //         user's weight for each set
+    //user's weight for each set
     private List<Object> getSetsAndWeight(int numSets) {
 
         ArrayList<Long> reps = new ArrayList<Long>();
@@ -83,7 +82,7 @@ public class UserData {
     //REQUIRES: routine can not be null
     //MODIFIES: this
     //EFFECTS: Creates an Exercise based on input from the user and adds it
-    //         to their routine
+    //to their routine
     private void addExerciseToRoutine(Routine routine) {
 
         while (gettingUserInput) {
@@ -129,6 +128,7 @@ public class UserData {
         return name;
     }
 
+    //EFFECTS: saves the data the user entered
     public void saveData() {
         try {
             System.out.println(routine.getExercise(0).getNumSets());
@@ -168,6 +168,10 @@ public class UserData {
         }
     }
 
+
+    //EFFECTS: if user enters 'y', it calls a method to save data
+    // if the user enters 'n', nothing happens. Otherwise, it throws an
+    //InvalidInputException
     private void promptSaveData() throws InvalidInputException {
         System.out.println("Would you like to save your data? \n y: yes \n n: no");
         String input = userInput.nextLine();
@@ -178,16 +182,22 @@ public class UserData {
         }
     }
 
+    //EFFECTS: if user enters 'v', it shows the percent improvement
+    // if the user enters 'q', it prints out a goodbye message. Otherwise,
+    // it throws an InvalidInputException
     private void promptViewStats() throws InvalidInputException {
         System.out.println("Choose one of the following: \n v: view percent improvement \n q: quit");
         String answer = userInput.nextLine();
         if (answer.equals("v")) {
             Analyzer analyze = new Analyzer();
             try {
-                Hashtable comparedData = analyze.compareData(routine, "data/data_reader_test.json");
+                Hashtable comparedData = analyze.compareData(routine, "data/data.json");
                 Set<String> keys = comparedData.keySet();
                 for (String key: keys) {
                     System.out.println(key + " : " + comparedData.get(key) + "%");
+                }
+                if (comparedData.isEmpty()) {
+                    System.out.println("No stats to view");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

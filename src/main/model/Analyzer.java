@@ -1,14 +1,8 @@
 package model;
 
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import persistence.JsonReader;
-
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -20,7 +14,7 @@ analysis on an Exercise
 public class Analyzer {
 
 
-    //REQUIRES: routine can not be null
+    //REQUIRES: routine and fileName can not be null
     //EFFECTS: For each exercise just completed, it returns the percentage of improvement
     //         from the last time the user performed each exercise
     public Hashtable compareData(Routine routine, String fileName) throws IOException {

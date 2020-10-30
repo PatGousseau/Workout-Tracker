@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /*
@@ -16,7 +13,7 @@ public class Exercise {
     private ArrayList<Long> reps;
     private ArrayList<Long> weight;
 
-
+    //EFFECTS: Constructs a new Exercise with a name, reps, weight and number of sets
     public Exercise(String name, long numSets, ArrayList<Long> reps, ArrayList<Long> weight) {
         this.name = name;
         this.numSets = numSets;

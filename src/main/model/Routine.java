@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /*
@@ -14,6 +11,7 @@ public class Routine {
     private ArrayList<Exercise> allExercises; // The list of all exercises in the routine
     private String name; // The name of the routine
 
+    //EFFECTS: constructs a new routine with a name
     public Routine(String name) {
         allExercises = new ArrayList<Exercise>();
         this.name = name;

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import model.Exercise;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads Exercises from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -19,6 +19,9 @@ public class JsonReader {
         this.source = source;
     }
 
+    //MODIFIES: this
+    //EFFECTS: reads the last entry of the user for the exercise of choice.
+    // Turns the last data into an Exercise object and returns it.
     public Exercise read(String exerciseKey) throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -29,6 +32,8 @@ public class JsonReader {
         return jsonToExercise(data,exerciseKey);
     }
 
+    //REQUIRES: parameters must not be null
+    //EFFECTS: turns the jsonObject to an Exercise object and returns it
     private Exercise jsonToExercise(JSONObject allData, String name) {
         ArrayList reps = new ArrayList();
         ArrayList weight = new ArrayList();
@@ -42,6 +47,8 @@ public class JsonReader {
         return exercise;
     }
 
+    //REQUIRES: parameters must not be null
+    //EFFECTS: returns all exercise names in the data
     public Set<String> getKeys() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -50,6 +57,7 @@ public class JsonReader {
         return keys;
     }
 
+    //REQUIRES: parameters must not be null
     // EFFECTS: reads source file as string and returns it
     public String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
