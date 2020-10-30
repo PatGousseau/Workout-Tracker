@@ -36,8 +36,6 @@ public class Analyzer {
                 DecimalFormat df = new DecimalFormat("0.00");
                 percentIncrease = ((routine.getExercise(i).getVol() / pastExercise.getVol()) * 100) - 100;
                 improvement.put(routine.getExercise(i).getName(), df.format(percentIncrease));
-            } else {
-                System.out.println("does not exist");
             }
         }
         return improvement;
