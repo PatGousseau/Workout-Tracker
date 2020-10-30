@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 // Represents a writer that writes JSON representation of workroom to file
+// Some code borrowed from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonWriter {
 
     private PrintWriter writer;

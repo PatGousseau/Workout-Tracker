@@ -11,6 +11,7 @@ import model.Exercise;
 import org.json.*;
 
 // Represents a reader that reads Exercises from JSON data stored in file
+// Some code borrowed from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonReader {
     private String source;
 
