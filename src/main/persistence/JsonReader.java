@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Stream;
 import model.Exercise;
@@ -33,6 +34,27 @@ public class JsonReader {
         return jsonToExercise(data,exerciseKey);
     }
 
+    //MODIFIES: this
+    //EFFECTS: reads the last entry of the user for the exercise of choice.
+    // Turns the last data into an Exercise object and returns it.
+    public HashMap readVolAndDate(String exerciseKey) throws IOException {
+        ArrayList<Exercise> allExerciseEntries = new ArrayList<>();
+        HashMap volAndDate = new HashMap();
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        JSONObject allExercises = (JSONObject) jsonObject.get("exercise");
+        JSONObject exercise = (JSONObject) allExercises.get(exerciseKey);
+        JSONArray allData = (JSONArray) exercise.get("entries");
+        for (int i = 0; i < allData.length(); i++) {
+            allExerciseEntries.add(jsonToExercise((JSONObject) allData.get(i),exerciseKey));
+        }
+        for (int i = 0; i < allExerciseEntries.size(); i++) {
+            volAndDate.put(allExerciseEntries.get(i).getDate(), allExerciseEntries.get(i).getVol());
+        }
+        JSONObject data = (JSONObject) allData.get(allData.length() - 1);
+        return volAndDate;
+    }
+
     //REQUIRES: parameters must not be null
     //EFFECTS: turns the jsonObject to an Exercise object and returns it
     private Exercise jsonToExercise(JSONObject allData, String name) {
@@ -40,11 +62,12 @@ public class JsonReader {
         ArrayList weight = new ArrayList();
         JSONArray jsonReps = (JSONArray) allData.get("numReps");
         JSONArray jsonWeight = (JSONArray) allData.get("weight");
+        String jsonDate = (String) allData.get("Date");
         for (int i = 0; i < (Integer) allData.get("numSets"); i++) {
             reps.add(jsonReps.getInt(i));
             weight.add(jsonWeight.getInt(i));
         }
-        Exercise exercise = new Exercise(name,(Integer) allData.get("numSets"),reps,weight);
+        Exercise exercise = new Exercise(name,(Integer) allData.get("numSets"),reps,weight,jsonDate);
         return exercise;
     }
 

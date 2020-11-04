@@ -12,6 +12,7 @@ public class Exercise {
     private long numSets;
     private ArrayList<Long> reps;
     private ArrayList<Long> weight;
+    private String date;
 
     //EFFECTS: Constructs a new Exercise with a name, reps, weight and number of sets
     public Exercise(String name, long numSets, ArrayList<Long> reps, ArrayList<Long> weight) {
@@ -19,6 +20,19 @@ public class Exercise {
         this.numSets = numSets;
         this.reps = reps;
         this.weight = weight;
+    }
+
+    //EFFECTS: Constructs a new Exercise with a name, reps, weight and number of sets, and a date
+    public Exercise(String name, long numSets, ArrayList<Long> reps, ArrayList<Long> weight,String date) {
+        this.name = name;
+        this.numSets = numSets;
+        this.reps = reps;
+        this.weight = weight;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return this.date;
     }
 
     public String getName() {
