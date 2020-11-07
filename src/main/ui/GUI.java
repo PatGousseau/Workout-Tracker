@@ -1,17 +1,15 @@
 package ui;
 
-
 import model.Analyzer;
 import model.Exercise;
 import model.Routine;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
 import org.jfree.data.category.DefaultCategoryDataset;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-
-import javax.rmi.CORBA.Util;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -21,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.List;
 
 public class GUI extends JFrame implements ActionListener, ListSelectionListener {
 
@@ -38,8 +35,6 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     private JButton addExerciseB;
     private JButton addNewExerciseB;
     private JButton doneB;
-    private JButton saveB;
-    private JButton startRoutineB;
     private JButton quitB;
     private JButton viewStatsB;
     private JButton viewGraphB;
@@ -55,6 +50,9 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     private JLabel orLabel;
     private JFreeChart chart;
     private JButton removeB;
+    private JLabel routineLabel;
+    private JLabel pastExLabel;
+    private JLabel improvementLabel;
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;
@@ -62,6 +60,10 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     boolean gettingUserInput = true;
 
     public GUI() {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = formatter.format(date);
+        System.out.println(strDate);
         routine = new Routine("routine");
         setGui();
         addExercise();
@@ -100,7 +102,6 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
                 listModel.addElement(name);
             }
 
-
             list = new JList(listModel);
             list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             list.setSelectedIndex(0);
@@ -110,8 +111,6 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
             list.setFont(new Font("open sans",Font.PLAIN,15));
             JScrollPane listScrollPane = new JScrollPane(list);
             add(listScrollPane, BorderLayout.CENTER);
-            add(list);
-            list.setBackground(new Color(221,161,94));
             list.setVisible(true);
             listScrollPane.setVisible(true);
             panel.add(listScrollPane);
@@ -121,6 +120,11 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
             orLabel.setBounds(250,205, 20,20);;
             orLabel.setFont(new Font("open sans",Font.PLAIN,15));
             orLabel.setVisible(true);
+            pastExLabel = new JLabel("Past Exercises");
+            pastExLabel.setBounds(80,10, 100,20);
+            pastExLabel.setFont(new Font("open sans",Font.PLAIN,15));
+            pastExLabel.setVisible(true);
+            panel.add(pastExLabel);
             panel.add(orLabel);
 
         } catch (IOException e) {
@@ -147,20 +151,19 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         JScrollPane routineListScrollPane = new JScrollPane(routineList);
         add(routineListScrollPane, BorderLayout.CENTER);
         add(routineList);
-        routineList.setBackground(new Color(221,161,94));
+       // routineList.setBackground(new Color(221,161,94));
         routineList.setVisible(true);
         routineListScrollPane.setVisible(true);
         panel.add(routineListScrollPane);
         panel.add(routineList);
         panel.add(routineListScrollPane);
 
-
-        orLabel = new JLabel("or");
-        orLabel.setBounds(250,205, 20,20);;
-        orLabel.setFont(new Font("open sans",Font.PLAIN,15));
-        orLabel.setVisible(false);
-        panel.add(orLabel);
-
+        routineLabel = new JLabel("Current Routine");
+        routineLabel.setBounds(513,10, 200,20);
+        //pastExLabel.setForeground(new Color(221,161,94));
+        routineLabel.setFont(new Font("open sans",Font.PLAIN,15));
+        routineLabel.setVisible(true);
+        panel.add(routineLabel);
     }
 
     private void done() {
@@ -283,7 +286,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
             System.out.println();
         }
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = formatter.format(date);
         routine.addExercise(new Exercise(storedName,numSets,reps,weight,strDate));
         routineModel.addElement(new Exercise(storedName,numSets,reps,weight).getName());
@@ -339,6 +342,8 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         orLabel.setVisible(false);
         routineList.setVisible(false);
         removeB.setVisible(false);
+        routineLabel.setVisible(false);
+        pastExLabel.setVisible(false);
     }
 
     public static void main(String[] args) {
@@ -377,9 +382,10 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     }
 
     private void displayStats() {
-
+        ArrayList x = new ArrayList();
         analyzer = new Analyzer();
         statsModel = new DefaultListModel();
+
         Hashtable stats = new Hashtable();
         try {
             stats = analyzer.compareData(routine,"data/data.json");
@@ -389,14 +395,20 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         Set<String> keys = stats.keySet();
         for (String exName: keys) {
             statsModel.addElement(exName + ": " + stats.get(exName) + "%");
+            x.add(exName + ": " + stats.get(exName) + "%");
         }
+
+
+
+
 
         statsList = new JList(statsModel);
         statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         statsList.setSelectedIndex(0);
         statsList.addListSelectionListener(this);
         statsList.setVisibleRowCount(5);
-        statsList.setBounds(0,0,200,200);
+        statsList.setBounds(WIDTH / 2,HEIGHT / 2,400,400);
+        statsList.setFont(new Font("open sans",Font.PLAIN,17));
         JScrollPane statsListScrollPane = new JScrollPane(list);
         add(statsListScrollPane, BorderLayout.CENTER);
         add(statsList);
@@ -405,9 +417,13 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         panel.add(statsListScrollPane);
         panel.add(statsList);
         panel.add(statsListScrollPane);
+        improvementLabel = new JLabel("Percent Improvement");
+        improvementLabel.setBounds(400, (HEIGHT / 2) + 40, 100,20);
+        improvementLabel.setFont(new Font("open sans",Font.PLAIN,18));
+        improvementLabel.setVisible(true);
+        panel.add(improvementLabel);
+        JOptionPane.showConfirmDialog(null, statsList, "Save", JOptionPane.PLAIN_MESSAGE);
     }
-
-
 
     private void graph(String graphName) {
         reader = new JsonReader("data/data.json");
@@ -425,15 +441,19 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         for (int i = 0; i < dateArray.length; i++) {
             dataSet.addValue((Double) volAndDate.get(dateArray[i]), "Volume", (Comparable) dateArray[i]);
         }
-
-//        for (String date: dates) {
-//            dataSet.addValue((Double) volAndDate.get(date), "Volume", date);
-//            System.out.println((Double) volAndDate.get(date) + ": " + date);
-//        }
-
-
-        chart = ChartFactory.createLineChart("Your Progress","Date", "Volume",dataSet);
-        ChartFrame chartFrame = new ChartFrame("graph",chart);
+        StandardChartTheme theme = (StandardChartTheme)org.jfree.chart.StandardChartTheme.createJFreeTheme();
+        theme.setTitlePaint(Color.decode("#4572a7"));
+        theme.setExtraLargeFont(new Font("open sans",Font.PLAIN, 16)); //title
+        theme.setLargeFont(new Font("open sans",Font.BOLD, 15)); //axis-title
+        theme.setRegularFont(new Font("open sans",Font.PLAIN, 11));
+        theme.setRangeGridlinePaint(Color.decode("#C0C0C0"));
+        theme.setPlotBackgroundPaint(Color.white);
+        theme.setChartBackgroundPaint(Color.white);
+        theme.setGridBandPaint(Color.red);
+        theme.setAxisLabelPaint(Color.decode("#666666"));
+        chart = ChartFactory.createLineChart("Your " + graphName + " progress","Date", "Volume",dataSet);
+        theme.apply(chart);
+        ChartFrame chartFrame = new ChartFrame("Progress Graph",chart);
         chartFrame.setVisible(true);
         chartFrame.setSize(500,500);
 
@@ -448,9 +468,9 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
             selectionValues[i] = exerciseNames.get(i).getName();
         }
 
-        String initialSelection = "Dogs";
+        String initialSelection = null;
         Object selection = JOptionPane.showInputDialog(null, "Which graph would you like to view?",
-                "Exercise Selection", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+                "Exercise Selection", JOptionPane.QUESTION_MESSAGE, null, selectionValues, null);
         graph(String.valueOf(selection));
     }
 
