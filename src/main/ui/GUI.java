@@ -263,28 +263,18 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         removeB.setForeground(new Color(255, 255, 255));
     }
 
+    JTextField rep1;
+    JTextField rep2;
+    JTextField rep3;
+    JTextField rep4;
+    JTextField weight1;
+    JTextField weight2;
+    JTextField weight3;
+    JTextField weight4;
+
     private void getData() {
 
-        JTextField rep1 = new JTextField(5);
-        JTextField rep2 = new JTextField();
-        JTextField rep3 = new JTextField();
-        JTextField rep4 = new JTextField();
-        JTextField weight1 = new JTextField();
-        JTextField weight2 = new JTextField();
-        JTextField weight3 = new JTextField();
-        JTextField weight4 = new JTextField();
-        Object[] message = {
-                "Reps for set 1:", rep1,
-                "Weight for set 1:", weight1,
-                "Reps for set 2:", rep2,
-                "Weight for set 2:", weight2,
-                "Reps for set 3:", rep3,
-                "Weight for set 3:", weight3,
-                "Reps for set 4:", rep4,
-                "Weight for set 4:", weight4,
-        };
-        int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values",
-                JOptionPane.OK_CANCEL_OPTION);
+        promptGetData();
 
         ArrayList<Long> reps = new ArrayList<Long>();
         ArrayList<Long> weight = new ArrayList<Long>();
@@ -306,35 +296,41 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         String strDate = formatter.format(date);
         routine.addExercise(new Exercise(storedName, numSets, reps, weight, strDate));
         routineModel.addElement(new Exercise(storedName, numSets, reps, weight).getName());
-
-
     }
 
+    private void promptGetData() {
+        rep1 = new JTextField(5);
+        rep2 = new JTextField();
+        rep3 = new JTextField();
+        rep4 = new JTextField();
+        weight1 = new JTextField();
+        weight2 = new JTextField();
+        weight3 = new JTextField();
+        weight4 = new JTextField();
+        Object[] message = {
+                "Reps for set 1:", rep1,
+                "Weight for set 1:", weight1,
+                "Reps for set 2:", rep2,
+                "Weight for set 2:", weight2,
+                "Reps for set 3:", rep3,
+                "Weight for set 3:", weight3,
+                "Reps for set 4:", rep4,
+                "Weight for set 4:", weight4,
+        };
+        int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values",
+                JOptionPane.OK_CANCEL_OPTION);
+    }
+
+    //EFFECTS: creates the menu for viewing progress related statistics
     private void statsMenu() {
         clearGui();
+        viewStatsButton();
+        viewGraphButton();
+        quitButton();
+    }
 
-        //view stats button
-        viewStatsB = new JButton("View stats");
-        viewStatsB.setFont(new Font("open sans", Font.PLAIN, 20));
-        viewStatsB.setBackground(new Color(96, 108, 58));
-        viewStatsB.setForeground(new Color(255, 255, 255));
-        Dimension size = viewStatsB.getPreferredSize();
-        viewStatsB.setVisible(true);
-        viewStatsB.setBounds(180, 200, size.width, size.height);
-        viewStatsB.addActionListener(this);
-        panel.add(viewStatsB);
-
-        //view graph button
-        viewGraphB = new JButton("View Graph");
-        viewGraphB.setFont(new Font("open sans", Font.PLAIN, 20));
-        viewGraphB.setBounds(360, 200, viewGraphB.getPreferredSize().width, viewGraphB.getPreferredSize().height);
-        viewGraphB.setBackground(new Color(96, 108, 58));
-        viewGraphB.setForeground(new Color(255, 255, 255));
-        viewGraphB.setVisible(true);
-        viewGraphB.addActionListener(this);
-        panel.add(viewGraphB);
-
-        //quit button
+    //EFFECTS: creates the quit button
+    private void quitButton() {
         quitB = new JButton("Quit");
         quitB.setFont(new Font("open sans", Font.PLAIN, 15));
         quitB.setBackground(new Color(40, 54, 24));
@@ -344,6 +340,31 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         quitB.setBounds(300, 300, quitSize.width, quitSize.height);
         quitB.addActionListener(this);
         panel.add(quitB);
+    }
+
+    //EFFECTS: creates the view graph button
+    private void viewGraphButton() {
+        viewGraphB = new JButton("View Graph");
+        viewGraphB.setFont(new Font("open sans", Font.PLAIN, 20));
+        viewGraphB.setBounds(360, 200, viewGraphB.getPreferredSize().width, viewGraphB.getPreferredSize().height);
+        viewGraphB.setBackground(new Color(96, 108, 58));
+        viewGraphB.setForeground(new Color(255, 255, 255));
+        viewGraphB.setVisible(true);
+        viewGraphB.addActionListener(this);
+        panel.add(viewGraphB);
+    }
+
+    //EFFECTS: creates the view stats button
+    private void viewStatsButton() {
+        viewStatsB = new JButton("View stats");
+        viewStatsB.setFont(new Font("open sans", Font.PLAIN, 20));
+        viewStatsB.setBackground(new Color(96, 108, 58));
+        viewStatsB.setForeground(new Color(255, 255, 255));
+        Dimension size = viewStatsB.getPreferredSize();
+        viewStatsB.setVisible(true);
+        viewStatsB.setBounds(180, 200, size.width, size.height);
+        viewStatsB.addActionListener(this);
+        panel.add(viewStatsB);
     }
 
     // EFFECTS: Clears the GUI from all components
@@ -397,21 +418,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     }
 
     private void displayStats() {
-        ArrayList x = new ArrayList();
-        analyzer = new Analyzer();
-        statsModel = new DefaultListModel();
-
-        Hashtable stats = new Hashtable();
-        try {
-            stats = analyzer.compareData(routine, "data/data.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Set<String> keys = stats.keySet();
-        for (String exName : keys) {
-            statsModel.addElement(exName + ": " + stats.get(exName) + "%");
-            x.add(exName + ": " + stats.get(exName) + "%");
-        }
+        getStats();
 
         statsList = new JList(statsModel);
         statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -436,22 +443,25 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         JOptionPane.showConfirmDialog(null, statsList, "Save", JOptionPane.PLAIN_MESSAGE);
     }
 
-    private void graph(String graphName) {
-        reader = new JsonReader("data/data.json");
-        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-        HashMap volAndDate = new HashMap();
+    private void getStats() {
+        analyzer = new Analyzer();
+        statsModel = new DefaultListModel();
 
+        Hashtable stats = new Hashtable();
         try {
-            volAndDate = reader.readVolAndDate(graphName);
+            stats = analyzer.compareData(routine, "data/data.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Set<String> dates = volAndDate.keySet();
-        Object[] dateArray = dates.toArray();
-        Arrays.sort(dateArray);
-        for (int i = 0; i < dateArray.length; i++) {
-            dataSet.addValue((Double) volAndDate.get(dateArray[i]), "Volume", (Comparable) dateArray[i]);
+        Set<String> keys = stats.keySet();
+        for (String exName : keys) {
+            statsModel.addElement(exName + ": " + stats.get(exName) + "%");
         }
+    }
+
+    private void graph(String graphName) {
+        DefaultCategoryDataset dataSet = getDataset(graphName);
+
         StandardChartTheme theme = (StandardChartTheme) org.jfree.chart.StandardChartTheme.createJFreeTheme();
         theme.setTitlePaint(Color.decode("#4572a7"));
         theme.setExtraLargeFont(new Font("open sans", Font.PLAIN, 16)); //title
@@ -468,6 +478,25 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         chartFrame.setVisible(true);
         chartFrame.setSize(500, 500);
 
+    }
+
+    private DefaultCategoryDataset getDataset(String graphName) {
+        reader = new JsonReader("data/data.json");
+        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+        HashMap volAndDate = new HashMap();
+
+        try {
+            volAndDate = reader.readVolAndDate(graphName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Set<String> dates = volAndDate.keySet();
+        Object[] dateArray = dates.toArray();
+        Arrays.sort(dateArray);
+        for (int i = 0; i < dateArray.length; i++) {
+            dataSet.addValue((Double) volAndDate.get(dateArray[i]), "Volume", (Comparable) dateArray[i]);
+        }
+        return dataSet;
     }
 
     // EFFECTS: Creates popup letting the user choose which graph they want
