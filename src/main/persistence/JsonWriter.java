@@ -48,10 +48,8 @@ public class JsonWriter {
 
                 addToEntries(jsonObject, newEntry, exercise);
             } else {
-                System.out.println(exercise.getName());
                 addNewExercise(jsonObject, newEntry, exercise);
             }
-
 
             writer = new PrintWriter(new File(destination));
             writer.println(jsonObject);
