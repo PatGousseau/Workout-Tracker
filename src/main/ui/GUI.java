@@ -413,7 +413,6 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
             x.add(exName + ": " + stats.get(exName) + "%");
         }
 
-
         statsList = new JList(statsModel);
         statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         statsList.setSelectedIndex(0);
