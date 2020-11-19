@@ -1,5 +1,9 @@
 package persistence;
 
+import model.Exercise;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -8,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Stream;
-import model.Exercise;
-import org.json.*;
 
 // Represents a reader that reads Exercises from JSON data stored in file
 // Some code borrowed from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
@@ -31,7 +33,7 @@ public class JsonReader {
         JSONObject exercise = (JSONObject) allExercises.get(exerciseKey);
         JSONArray allData = (JSONArray) exercise.get("entries");
         JSONObject data = (JSONObject) allData.get(allData.length() - 1);
-        return jsonToExercise(data,exerciseKey);
+        return jsonToExercise(data, exerciseKey);
     }
 
     //MODIFIES: this
@@ -46,7 +48,7 @@ public class JsonReader {
         JSONObject exercise = (JSONObject) allExercises.get(exerciseKey);
         JSONArray allData = (JSONArray) exercise.get("entries");
         for (int i = 0; i < allData.length(); i++) {
-            allExerciseEntries.add(jsonToExercise((JSONObject) allData.get(i),exerciseKey));
+            allExerciseEntries.add(jsonToExercise((JSONObject) allData.get(i), exerciseKey));
         }
         for (int i = 0; i < allExerciseEntries.size(); i++) {
             volAndDate.put(allExerciseEntries.get(i).getDate(), allExerciseEntries.get(i).getVol());
@@ -67,7 +69,7 @@ public class JsonReader {
             reps.add(jsonReps.getInt(i));
             weight.add(jsonWeight.getInt(i));
         }
-        Exercise exercise = new Exercise(name,(Integer) allData.get("numSets"),reps,weight,jsonDate);
+        Exercise exercise = new Exercise(name, (Integer) allData.get("numSets"), reps, weight, jsonDate);
         return exercise;
     }
 

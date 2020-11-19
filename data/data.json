@@ -1,1 +1,502 @@
-{"exercise":{"squat":{"entries":[{"numReps":[12,12,12],"weight":[30,30,30],"numSets":3,"Date":"10/10/2020"},{"numReps":[12,12,12],"weight":[30,30,32],"numSets":3,"Date":"12/10/2020"},{"numReps":[12,12,13],"weight":[30,30,32],"numSets":3,"Date":"14/10/2020"},{"numReps":[12,12,12],"weight":[35,35,30],"numSets":3,"Date":"17/10/2020"},{"numReps":[12,12,12,1],"weight":[30,30,30,10],"numSets":4,"Date":"20/10/2020"},{"numReps":[12,12,12,12],"weight":[30,30,30,4],"numSets":4,"Date":"23/10/2020"},{"numReps":[12,12,12,12],"weight":[30,30,30,10],"numSets":4,"Date":"25/10/2020"}]},"bigman_thing":{"entries":[{"numReps":[2,4,3],"weight":[3,1,2],"numSets":3,"Date":"10/24/2020"},{"numReps":[12,12,12,12],"weight":[12,12,12,12],"numSets":0,"Date":"10/24/2020"},{"numReps":[1,1,1,1],"weight":[1,1,1,1],"numSets":0,"Date":"10/24/2020"}]},"ohp":{"entries":[{"numReps":[30],"weight":[30],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[1],"weight":[1],"numSets":1,"Date":"10/24/2020"},{"numReps":[12,12,12,12],"weight":[12,12,12,12],"numSets":0,"Date":"10/24/2020"},{"numReps":[40,40,40,40],"weight":[40,40,40,40],"numSets":0,"Date":"10/24/2020"}],"numReps":[12,12,12],"weight":[40,40,40],"numSets":3,"Date":"10/24/2020"},"pullups":{"entries":[{"numReps":[2,2],"weight":[2,2],"numSets":2,"Date":"10/24/2020"},{"numReps":[12,12,12,12],"weight":[12,12,12,12],"numSets":0,"Date":"10/24/2020"},{"numReps":[600,600,600,600],"weight":[600,600,600,600],"numSets":0,"Date":"10/24/2020"},{"numReps":[12,12,12,12],"weight":[12,12,12,12],"numSets":0,"Date":"10/24/2020"}]},"bench press":{"entries":[{"numReps":[12,12,12],"weight":[30,30,30],"numSets":3,"Date":"10/10/2020"},{"numReps":[200],"weight":[200],"numSets":1,"Date":"10/24/2020"},{"numReps":[3,3,3],"weight":[3,3,3],"numSets":3,"Date":"10/24/2020"}]},"splitsquat":{"entries":[{"numReps":[1000,1000,1000,1000],"weight":[1000,1000,1000,1000],"numSets":0,"Date":"10/24/2020"}]},"pullover":{"entries":[{"numReps":[333,333,333,333],"weight":[333,333,333,333],"numSets":0,"Date":"10/24/2020"}]},"curls":{"entries":[{"numReps":[12,12,12],"weight":[30,30,30],"numSets":3,"Date":"10/10/2020"},{"numReps":[12,12,12],"weight":[40,40,40],"numSets":3,"Date":"10/24/2020"},{"numReps":[12,12,12],"weight":[40,40,40],"numSets":3,"Date":"10/24/2020"}]}}}
+{
+  "exercise": {
+    "squat": {
+      "entries": [
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ],
+          "numSets": 3,
+          "Date": "10/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            32
+          ],
+          "numSets": 3,
+          "Date": "12/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            13
+          ],
+          "weight": [
+            30,
+            30,
+            32
+          ],
+          "numSets": 3,
+          "Date": "14/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            35,
+            35,
+            30
+          ],
+          "numSets": 3,
+          "Date": "17/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            1
+          ],
+          "weight": [
+            30,
+            30,
+            30,
+            10
+          ],
+          "numSets": 4,
+          "Date": "20/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30,
+            4
+          ],
+          "numSets": 4,
+          "Date": "23/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30,
+            10
+          ],
+          "numSets": 4,
+          "Date": "25/10/2020"
+        }
+      ]
+    },
+    "bigman_thing": {
+      "entries": [
+        {
+          "numReps": [
+            2,
+            4,
+            3
+          ],
+          "weight": [
+            3,
+            1,
+            2
+          ],
+          "numSets": 3,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        }
+      ]
+    },
+    "ohp": {
+      "entries": [
+        {
+          "numReps": [
+            30
+          ],
+          "weight": [
+            30
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            1
+          ],
+          "weight": [
+            1
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            40,
+            40,
+            40,
+            40
+          ],
+          "weight": [
+            40,
+            40,
+            40,
+            40
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        }
+      ],
+      "numReps": [
+        12,
+        12,
+        12
+      ],
+      "weight": [
+        40,
+        40,
+        40
+      ],
+      "numSets": 3,
+      "Date": "10/24/2020"
+    },
+    "pullups": {
+      "entries": [
+        {
+          "numReps": [
+            2,
+            2
+          ],
+          "weight": [
+            2,
+            2
+          ],
+          "numSets": 2,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            600,
+            600,
+            600,
+            600
+          ],
+          "weight": [
+            600,
+            600,
+            600,
+            600
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        }
+      ]
+    },
+    "bench press": {
+      "entries": [
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ],
+          "numSets": 3,
+          "Date": "10/10/2020"
+        },
+        {
+          "numReps": [
+            200
+          ],
+          "weight": [
+            200
+          ],
+          "numSets": 1,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            3,
+            3,
+            3
+          ],
+          "weight": [
+            3,
+            3,
+            3
+          ],
+          "numSets": 3,
+          "Date": "10/24/2020"
+        }
+      ]
+    },
+    "splitsquat": {
+      "entries": [
+        {
+          "numReps": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "weight": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        }
+      ]
+    },
+    "pullover": {
+      "entries": [
+        {
+          "numReps": [
+            333,
+            333,
+            333,
+            333
+          ],
+          "weight": [
+            333,
+            333,
+            333,
+            333
+          ],
+          "numSets": 0,
+          "Date": "10/24/2020"
+        }
+      ]
+    },
+    "curls": {
+      "entries": [
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            30,
+            30,
+            30
+          ],
+          "numSets": 3,
+          "Date": "10/10/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            40,
+            40,
+            40
+          ],
+          "numSets": 3,
+          "Date": "10/24/2020"
+        },
+        {
+          "numReps": [
+            12,
+            12,
+            12
+          ],
+          "weight": [
+            40,
+            40,
+            40
+          ],
+          "numSets": 3,
+          "Date": "10/24/2020"
+        }
+      ]
+    }
+  }
+}

@@ -2,8 +2,10 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestRoutine {
 
@@ -48,13 +50,13 @@ public class TestRoutine {
         routine.addExercise(benchPress);
         routine.addExercise(squat);
         routine.removeExercise("curls");
-        assertEquals(routine.getExercise(0),benchPress);
-        assertEquals(routine.getExercise(1),squat);
+        assertEquals(routine.getExercise(0), benchPress);
+        assertEquals(routine.getExercise(1), squat);
     }
 
     @Test
     void testRoutineGetName() {
 
-        assertEquals("testRoutine",routine.getName());
+        assertEquals("testRoutine", routine.getName());
     }
 }

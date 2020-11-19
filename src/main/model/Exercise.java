@@ -23,7 +23,7 @@ public class Exercise {
     }
 
     //EFFECTS: Constructs a new Exercise with a name, reps, weight and number of sets, and a date
-    public Exercise(String name, long numSets, ArrayList<Long> reps, ArrayList<Long> weight,String date) {
+    public Exercise(String name, long numSets, ArrayList<Long> reps, ArrayList<Long> weight, String date) {
         this.name = name;
         this.numSets = numSets;
         this.reps = reps;

@@ -3,10 +3,13 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestAnalyzer {
 
@@ -21,7 +24,7 @@ public class TestAnalyzer {
 
     @BeforeEach
     void before() {
-         routine = new Routine("testRoutine");
+        routine = new Routine("testRoutine");
         long numSets = 3;
         for (int i = 0; i < 3; i++) {
             reps.add(12L);
@@ -38,21 +41,23 @@ public class TestAnalyzer {
         routine.addExercise(curls);
 
 
-        Hashtable newDatum = analyze.compareData(routine,"data/data_reader_test.json");
+        Hashtable newDatum = analyze.compareData(routine, "data/data_reader_test.json");
         assertEquals(String.valueOf(14.29), newDatum.get("squat"));
         Routine secondRoutine = new Routine("secondRoutine");
-        secondRoutine.addExercise(new Exercise("doesNotExist",1,reps,weight));
-        analyze.compareData(secondRoutine,"data/data_reader_test.json");
+        secondRoutine.addExercise(new Exercise("doesNotExist", 1, reps, weight));
+        analyze.compareData(secondRoutine, "data/data_reader_test.json");
 
     }
-
 
 
     @Test
     void testCompareDataExceptions() {
 
-        try { analyze.compareData(routine,"data/data_reader_test.json" );}
-        catch (IOException e) { fail(); }
+        try {
+            analyze.compareData(routine, "data/data_reader_test.json");
+        } catch (IOException e) {
+            fail();
+        }
     }
 
 

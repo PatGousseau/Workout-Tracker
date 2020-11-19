@@ -1,20 +1,14 @@
 package model;
 
-import model.Analyzer;
-import model.Exercise;
-import model.InvalidInputException;
-import model.Routine;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WriterTest {
 
@@ -39,12 +33,12 @@ public class WriterTest {
                 reps.add(12);
                 weight.add(400);
             }
-            Exercise exercise = new Exercise("chinups",3,reps,weight);
+            Exercise exercise = new Exercise("chinups", 3, reps, weight);
             routine.addExercise(exercise);
             writer.write(routine);
             Exercise chinUps = reader.read("chinups");
-            assertEquals(3,chinUps.getNumSets());
-           // assertEquals(400,chinUps.getWeight().get(0));
+            assertEquals(3, chinUps.getNumSets());
+            // assertEquals(400,chinUps.getWeight().get(0));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,11 +54,11 @@ public class WriterTest {
                 reps.add(12);
                 weight.add(500);
             }
-            Exercise exercise = new Exercise("newExercise",3,reps,weight);
+            Exercise exercise = new Exercise("newExercise", 3, reps, weight);
             routine.addExercise(exercise);
             writer.write(routine);
             Exercise newExercise = reader.read("newExercise");
-            assertEquals(3,newExercise.getNumSets());
+            assertEquals(3, newExercise.getNumSets());
         } catch (IOException e) {
             e.printStackTrace();
         }

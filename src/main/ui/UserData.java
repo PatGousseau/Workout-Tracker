@@ -6,6 +6,7 @@ import model.InvalidInputException;
 import model.Routine;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -16,7 +17,7 @@ This class is used to retrieve user input
 public class UserData {
 
     private Scanner userInput = new Scanner(System.in);  // Create a Scanner object
-    private boolean  gettingUserInput = true; // Is the user done entering input
+    private boolean gettingUserInput = true; // Is the user done entering input
     private Routine routine;
     private JsonReader reader = new JsonReader("data/data.json");
     private JsonWriter writer = new JsonWriter("data/data.json");
@@ -94,7 +95,7 @@ public class UserData {
             int numSets = Integer.parseInt(userInput.nextLine());
             List<Object> userInput = getSetsAndWeight(numSets);
             ArrayList<Long> weight = (ArrayList<Long>) userInput.get(1);
-            routine.addExercise(new Exercise(exerciseName,numSets, (ArrayList<Long>) userInput.get(0), weight));
+            routine.addExercise(new Exercise(exerciseName, numSets, (ArrayList<Long>) userInput.get(0), weight));
             System.out.println("Successfully added " + exerciseName + " to your " + routine.getName() + " routine!");
             isUserDone(routine);
         }
@@ -109,7 +110,7 @@ public class UserData {
         try {
             Set<String> keys = reader.getKeys();
             int index = 1;
-            for (String key: keys) {
+            for (String key : keys) {
                 System.out.println(index + ": " + key);
                 allExercises.put(index, key);
                 index++;
@@ -193,7 +194,7 @@ public class UserData {
             try {
                 Hashtable comparedData = analyze.compareData(routine, "data/data.json");
                 Set<String> keys = comparedData.keySet();
-                for (String key: keys) {
+                for (String key : keys) {
                     System.out.println(key + " : " + comparedData.get(key) + "%");
                 }
                 if (comparedData.isEmpty()) {

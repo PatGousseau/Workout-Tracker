@@ -4,7 +4,10 @@ import model.Exercise;
 import model.Routine;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -25,17 +28,17 @@ public class JsonWriter {
     public void write(Routine routine) throws IOException {
 
         JsonReader read = new JsonReader(destination);
-        ArrayList<Exercise> newExercises  = routine.getAllExercises();
+        ArrayList<Exercise> newExercises = routine.getAllExercises();
         Set<String> keys = read.getKeys();
 
         //create new entry object
-        for (Exercise exercise: newExercises) {
+        for (Exercise exercise : newExercises) {
             JSONObject newEntry = new JSONObject();
 
             newEntry = new JSONObject();
             newEntry.put("Date", "10/24/2020");
-            newEntry.put("numSets",exercise.getNumSets());
-            newEntry.put("numReps",exercise.getReps());
+            newEntry.put("numSets", exercise.getNumSets());
+            newEntry.put("numReps", exercise.getReps());
             newEntry.put("weight", exercise.getWeight());
 
             String jsonData = read.readFile(destination);
@@ -46,7 +49,7 @@ public class JsonWriter {
                 addToEntries(jsonObject, newEntry, exercise);
             } else {
                 System.out.println(exercise.getName());
-                addNewExercise(jsonObject,newEntry,exercise);
+                addNewExercise(jsonObject, newEntry, exercise);
             }
 
 
