@@ -25,7 +25,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;
-    String name = null;
+    private String name = null;
     boolean gettingUserInput = true;
     private JFrame frame;
     private JPanel panel;
@@ -60,10 +60,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     private int numSets;
 
     public GUI() {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        String strDate = formatter.format(date);
-        System.out.println(strDate);
+
         routine = new Routine("routine");
         setGui();
         addExercise();
@@ -90,9 +87,8 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         separator.setOrientation(SwingConstants.VERTICAL);
         separator.setVisible(true);
         panel.add(separator);
-
+        loadData();
         done();
-        displayExercises();
         displayRoutine();
         removeButton();
     }
@@ -272,6 +268,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     JTextField weight3;
     JTextField weight4;
 
+    //EFFECTS: get the data and add it to the system
     private void getData() {
 
         promptGetData();
@@ -298,6 +295,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         routineModel.addElement(new Exercise(storedName, numSets, reps, weight).getName());
     }
 
+    // EFFECTS: get the data from the exercise performed by the user
     private void promptGetData() {
         rep1 = new JTextField(5);
         rep2 = new JTextField();
@@ -417,6 +415,19 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         routineModel.removeElement(routineList.getSelectedValue());
     }
 
+    //EFFECTS: prompts the user to load past exercises
+    private void loadData() {
+        String message = "Load past exercises?";
+        int answer = JOptionPane.showConfirmDialog(null, message, "Save", JOptionPane.YES_NO_OPTION);
+        if (answer == JOptionPane.YES_OPTION) {
+            System.out.println("yes");
+            displayExercises();
+        }  else {
+            System.out.println("no");
+        }
+    }
+
+    //EFFECTS: Displays percent improvement for each exercise performed
     private void displayStats() {
         getStats();
 
@@ -443,6 +454,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         JOptionPane.showConfirmDialog(null, statsList, "Save", JOptionPane.PLAIN_MESSAGE);
     }
 
+    //EFFECTS: Calculate all percent improvement for each exercise
     private void getStats() {
         analyzer = new Analyzer();
         statsModel = new DefaultListModel();
@@ -459,6 +471,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         }
     }
 
+    //EFFECTS: Displays graph for the selected exercise
     private void graph(String graphName) {
         DefaultCategoryDataset dataSet = getDataset(graphName);
 
@@ -480,6 +493,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
 
     }
 
+    //EFFECTS: Gets the data set for the graph
     private DefaultCategoryDataset getDataset(String graphName) {
         reader = new JsonReader("data/data.json");
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
@@ -537,4 +551,3 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         name = String.valueOf(list.getSelectedValue());
     }
 }
-
