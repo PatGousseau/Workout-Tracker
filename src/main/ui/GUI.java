@@ -459,7 +459,7 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
         analyzer = new Analyzer();
         statsModel = new DefaultListModel();
 
-        Hashtable stats = new Hashtable();
+        Map stats = new Hashtable();
         try {
             stats = analyzer.compareData(routine, "data/data.json");
         } catch (IOException e) {

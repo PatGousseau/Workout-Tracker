@@ -192,7 +192,7 @@ public class UserData {
         if (answer.equals("v")) {
             Analyzer analyze = new Analyzer();
             try {
-                Hashtable comparedData = analyze.compareData(routine, "data/data.json");
+                Map comparedData = analyze.compareData(routine, "data/data.json");
                 Set<String> keys = comparedData.keySet();
                 for (String key : keys) {
                     System.out.println(key + " : " + comparedData.get(key) + "%");

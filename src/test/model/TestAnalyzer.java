@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -41,7 +42,7 @@ public class TestAnalyzer {
         routine.addExercise(curls);
 
 
-        Hashtable newDatum = analyze.compareData(routine, "data/data_reader_test.json");
+        Map newDatum = analyze.compareData(routine, "data/data_reader_test.json");
         assertEquals(String.valueOf(14.29), newDatum.get("squat"));
         Routine secondRoutine = new Routine("secondRoutine");
         secondRoutine.addExercise(new Exercise("doesNotExist", 1, reps, weight));
