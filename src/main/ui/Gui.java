@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class GUI extends JFrame implements ActionListener, ListSelectionListener {
+public class Gui extends JFrame implements ActionListener, ListSelectionListener {
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;
@@ -59,15 +59,11 @@ public class GUI extends JFrame implements ActionListener, ListSelectionListener
     private JLabel improvementLabel;
     private int numSets;
 
-    public GUI() {
-
+    //EFFECTS: Constructs a new GUI
+    public Gui() {
         routine = new Routine("routine");
         setGui();
         addExercise();
-    }
-
-    public static void main(String[] args) {
-        GUI gui = new GUI();
     }
 
     //EFFECTS: Creates and adds all components to GUI
