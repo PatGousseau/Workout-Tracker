@@ -36,7 +36,7 @@ public class JsonWriter {
             JSONObject newEntry = new JSONObject();
 
             newEntry = new JSONObject();
-            newEntry.put("Date", "10/24/2020");
+            newEntry.put("Date", exercise.getDate());
             newEntry.put("numSets", exercise.getNumSets());
             newEntry.put("numReps", exercise.getReps());
             newEntry.put("weight", exercise.getWeight());

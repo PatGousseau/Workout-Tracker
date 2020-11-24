@@ -284,11 +284,13 @@ public class Gui extends JFrame implements ActionListener, ListSelectionListener
         } catch (NullPointerException e) {
             System.out.println();
         }
+
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = formatter.format(date);
-        routine.addExercise(new Exercise(storedName, numSets, reps, weight, strDate));
-        routineModel.addElement(new Exercise(storedName, numSets, reps, weight).getName());
+        System.out.println(strDate);
+        routine.addExercise(new Exercise(storedName, reps.size(), reps, weight, strDate));
+        routineModel.addElement(new Exercise(storedName, reps.size(), reps, weight).getName());
     }
 
     // EFFECTS: get the data from the exercise performed by the user

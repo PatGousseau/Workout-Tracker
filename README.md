@@ -27,6 +27,14 @@ My workouts are of great importance to me. After using multiple tracking apps ov
 
 I have made appropriate use of the Map interface in the Analyzer, GUI and UserData classes
 
+## Phase 4: Task 3
+
+- In the Analyzer class, I would improve cohesion by extracting a common helper method between the "read" and
+"readVolAndDate" method. Thus reducing duplicate code and coupling.
+- Make a bidirectional relationship between Exercise and Routine so that each exercise has a routine.
+- Make my Gui class more robust to handle any invalid user input
+
+
 
 
 
