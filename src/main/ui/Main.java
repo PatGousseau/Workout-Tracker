@@ -1,7 +1,7 @@
 package ui;
 
 /*
-This class runs the ui
+This class runs the gui
  */
 
 public class Main {
