@@ -11,8 +11,9 @@ My workouts are of great importance to me. After using multiple tracking apps ov
 
 **Program features:**
 - User defined workout routines
-- Relevant graphs and statistics related to your own workout progress
+- Relevant graphs and statistics related to your own workout progress <br/>
 
+![WorkoutTrackerHome](C:\Users\pcgou\OneDrive\Documents\Projects\Images\WorkoutTrackerHome.png)
 
 
 
