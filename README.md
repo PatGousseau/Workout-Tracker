@@ -13,7 +13,8 @@ My workouts are of great importance to me. After using multiple tracking apps ov
 - User defined workout routines
 - Relevant graphs and statistics related to your own workout progress <br/>
 
-![WorkoutTrackerHome](C:\Users\pcgou\OneDrive\Documents\Projects\Images\WorkoutTrackerHome.png)
+![WorkoutTrackerHome](https://user-images.githubusercontent.com/66135756/114240715-966a1c00-994d-11eb-9cb4-043c6cec05d5.png)
+
 
 
 
