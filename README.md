@@ -14,25 +14,7 @@ My workouts are of great importance to me. After using multiple tracking apps ov
 - Relevant graphs and statistics related to your own workout progress
 
 
-## User Stories
- 
-- As a user, I want to be able to add an exercise to a workout plan
-- As a user, I want to be able to remove an exercise from a workout plan 
-- As a user, I want to be able to add completed sets and reps with the weight used to an exercise
-- As a user, I want to be able to view statistics related to my progress
-- As a user, I want to be able to save the exercises I have completed
-- As a user, I want to be able to choose from past exercises completed
 
-## Phase 4: Task 2
-
-I have made appropriate use of the Map interface in the Analyzer, GUI and UserData classes
-
-## Phase 4: Task 3
-
-- In the Analyzer class, I would improve cohesion by extracting a common helper method between the "read" and
-"readVolAndDate" method. Thus reducing duplicate code and coupling.
-- Make a bidirectional relationship between Exercise and Routine so that each exercise has a routine.
-- Make my Gui class more robust to handle any invalid user input
 
 
 
