@@ -2,7 +2,7 @@
 
 ## Overview 
 
-An intuitive workout tracker that is effective at tracking wokrout progress. 
+An intuitive workout tracker that is effective at tracking workout progress. 
 
 **Program features:**
 - User defined workout routines
